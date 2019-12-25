@@ -1,0 +1,73 @@
+TABLE[][] table;
+PIECE piece;
+//PIECE qpiece;
+
+final int size = 50;
+int w, h;
+
+void setup() {
+  size(500, 800);
+  w = width/size;
+  h = height/size;
+  table = new TABLE[w][h];
+  for (int i = 0; i < w; i++)
+    for (int j = 0; j < h; j++) {
+      table[i][j] = new TABLE(i * size, j * size);
+    }
+    piece = new PIECE(width/2-size,0,floor(random(7)));
+}
+
+void draw() {
+  background(130);
+  for (int i = 0; i < w; i++)
+    for (int j = 0; j < h; j++) {
+      table[i][j].update();
+    }
+  if (piece != null)
+    piece.update();
+}
+
+void keyPressed() {
+  switch(keyCode) {
+  case UP-ARROW:
+    if (piece == null)
+      piece = new PIECE(width/2 - size, 0, 0);
+    break;
+  case DOWN-ARROW:
+    if (piece != null)
+      piece.accel();
+    break;
+  case RIGHT-ARROW:
+    if (piece != null)
+      piece.moveRight();
+    break;
+  case LEFT-ARROW:
+    if (piece != null)
+      piece.moveLeft();
+    break;
+  }
+
+  switch(key) {
+  case 'c':
+    piece = new PIECE(width/2 - size, 0, 0);
+    break;
+  case 'i':
+    piece = new PIECE(width/2 - size, 0, 1);
+    break;
+  case 'l':
+    piece = new PIECE(width/2 - size, 0, 2);
+    break;
+  case 'j':
+    piece = new PIECE(width/2 - size, 0, 3);
+    break;
+  case 't':
+    piece = new PIECE(width/2 - size, 0, 4);
+    break;
+  case 's':
+    piece = new PIECE(width/2 - size, 0, 5);
+    break;
+  case 'z':
+    piece = new PIECE(width/2 - size, 0, 6);
+    break;
+  }
+}

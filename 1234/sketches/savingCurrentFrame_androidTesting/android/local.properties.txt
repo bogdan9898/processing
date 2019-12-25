@@ -1,0 +1,1 @@
+sdk.dir=C:/Users/Asus/Documents/Processing/android/sdk

@@ -1,0 +1,70 @@
+class PIECE {
+  float x;
+  float y;
+  int type; 
+  /* cub = 0
+   I = 1
+   L = 2
+   T = 3
+   Z = 4 */
+  int[] formatie;
+
+  PIECE (float x, float y, int type) {
+    this.x = x;
+    this.y = y;
+    this.type = type;
+    formatie = new int[4];
+  }
+
+  void accel() {
+    if (inBounds(type))
+      y += size;
+  }
+
+  boolean inBounds(int type) {
+    switch(type) {
+    case 0:
+      if (x > 0 && y > 0 && x + 2*size < width && y + 2*size < height)
+        return true;
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    }
+    return false;
+  }
+
+  void update() {
+    show(type);
+  }
+
+  void show(int type) {
+    switch(type) {
+    case 0:
+      fill(0);
+      stroke(255);
+      rect(x, y, size, size);
+      rect(x+size, y, size, size);
+      rect(x+size, y+size, size, size);
+      rect(x, y+size, size, size);
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    }
+  }
+}

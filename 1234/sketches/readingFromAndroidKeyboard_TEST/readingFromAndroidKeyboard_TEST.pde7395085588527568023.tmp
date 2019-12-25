@@ -1,0 +1,79 @@
+String ip;
+float prevX = 0, prevY = 0;
+PGraphics img, txtBox;
+//import processing.net.*; 
+//Client c; 
+
+void setup() {
+  size(720, 900); //size(720, 1280);
+  strokeWeight(4);
+  imageMode(CENTER);
+
+  txtBox = createGraphics(400, 50);
+  txtBox.beginDraw();
+  txtBox.background(150);
+  txtBox.fill(255, 0, 0);
+  txtBox.textSize(50);
+  txtBox.textAlign(CENTER, CENTER);
+  //delete this
+  txtBox.text("000.000.000.0", txtBox.width/2, txtBox.height/2);
+  //delete this
+  txtBox.endDraw();
+
+  img = createGraphics(560, 560);
+  img.beginDraw();
+  img.background(0);
+  img.strokeWeight(4);
+  img.stroke(255);
+  img.endDraw();
+
+  //c = new Client(this, ip, 12345); // Replace with your server’s IP and port
+  ip = "000.000.000.0";
+}
+
+void draw() {
+  prevX = mouseX - (width/2 - img.width/2);
+  prevY = mouseY - (height/2 - img.height/2);
+  image(img, width/2, height/2);
+  image(txtBox, width/2, txtBox.height/2);
+}
+
+void mouseDragged() {
+  img.beginDraw();
+  img.line(mouseX - (width/2 - img.width/2), mouseY - (height/2 - img.height/2), prevX, prevY);
+  img.endDraw();
+}
+
+void keyPressed() {
+  if (keyCode == 10) {//enter
+    updateTxtBox();
+  } else {
+    //if (keyCode == 8) {//backspace
+    //ip.replace(ip.length()-1, "");
+    //}
+
+    //println(keyCode);
+    StringBuilder tmp = new StringBuilder();
+    tmp.append(ip);
+    tmp.append(char(keyCode));
+    ip = tmp.toString();
+    println("tmp:", tmp);
+  }
+}
+
+void clear(){
+  println("clear");
+}
+
+void guess(){
+  println("guess");
+}
+
+void updateTxtBox() {
+  //println("ip:", ip);
+  txtBox.beginDraw();
+  txtBox.background(150);
+  txtBox.text(ip, txtBox.width/2, txtBox.height/2);
+  txtBox.endDraw();
+  ip = "";
+}

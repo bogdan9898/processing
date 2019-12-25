@@ -1,0 +1,52 @@
+TABLE[][] table;
+PIECE piece;
+PIECE qpiece;
+
+final int size = 50;
+int w, h;
+
+void setup() {
+  size(500, 800);
+  w = width/size;
+  h = height/size;
+  table = new TABLE[w][h];
+  for (int i = 0; i < w; i++)
+    for (int j = 0; j < h; j++) {
+      table[i][j] = new TABLE(i * size, j * size);
+    }
+}
+
+void draw() {
+  background(130);
+
+  for (int i = 0; i < w; i++)
+    for (int j = 0; j < h; j++) {
+      table[i][j].update();
+    }
+  if (piece != null)
+    piece.update();
+}
+
+void keyPressed() {
+  switch(keyCode) {
+  case UP-ARROW:
+    if (piece == null)
+      piece = new PIECE(width/2, 0, 0);
+    break;
+  case DOWN-ARROW:
+    if (piece != null)
+      //piece.accel();
+     break;
+  case RIGHT-ARROW:
+    break;
+  case LEFT-ARROW:
+    break;
+  }
+
+  //    if (keyCode == RIGHT-ARROW && piece != null && piece.x < width-2*size) {
+  //      piece.x += size;
+  //    } else
+  //      if (keyCode == LEFT-ARROW && piece != null && piece.x > 0) {
+  //        piece.x -= size;
+  //      }
+}

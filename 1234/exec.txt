@@ -1,0 +1,11 @@
+Process p = exec("python", "C:\\Users\\Jumper\\Desktop\\testPythonLaunch.py");
+try {
+	int result = p.waitFor();
+	println("the process returned " + result);
+} 
+catch (InterruptedException e) {
+	println(e);
+}
+launch("C:\\Users\\Jumper\\Desktop\\testPythonLaunch.py");
+
+
